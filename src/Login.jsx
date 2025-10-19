@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./Context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -34,6 +36,7 @@ export default function Login() {
       if (!res.ok) {
         throw new Error(data.message || "Login failed");
       }
+      login(data.token);
 
       // ✅ SUCCESS
       alert("Login successful!");
