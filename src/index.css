@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  box-sizing: border-box;
+  
+}
+
+/* brand variables */
+:root{
+  --brand-magenta: #E80BFF;
+  --brand-indigo: #1b0079;
+  --brand-white: #ffffff;
+  --brand-black: #0b0b0b;
+}
+
+
+/* small helper gradient class */
+.bg-brand-gradient {
+  background: linear-gradient(90deg, var(--brand-indigo), var(--brand-magenta));
+}
