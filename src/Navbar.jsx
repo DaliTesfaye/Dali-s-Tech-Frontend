@@ -25,12 +25,12 @@ export default function Navbar() {
       <div className="bg-gradient-to-r from-[#1b0079] to-black/90 shadow-sm">
         <div className="max-w-7xl mx-auto px-6">
           <div className="h-16 flex items-center justify-between">
-            {/* left: logo */}
+            {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
               <img src={logo} alt="DalixTech" className="h-10 w-auto" />
             </Link>
 
-            {/* center / desktop nav */}
+            {/* Desktop Nav */}
             <nav className="hidden md:flex items-center space-x-6">
               {nav.map((item) => (
                 <NavLink
@@ -49,14 +49,20 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* right: actions */}
+            {/* Right section */}
             <div className="flex items-center gap-3">
               {user ? (
                 <>
-                  <span className="hidden md:flex items-center gap-2 text-white/90 px-3 py-2 rounded-full bg-[#E80BFF]/10">
-                    <User size={16} />
-                    <span className="text-sm">{user.email}</span>
-                  </span>
+                  {/* Profile icon */}
+                  <button
+                    onClick={() => navigate("/profile")}
+                    className="hidden md:inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#E80BFF]/20 text-[#E80BFF] hover:brightness-125 transition"
+                    title="Go to Profile"
+                  >
+                    <User size={18} />
+                  </button>
+
+                  {/* Logout */}
                   <button
                     onClick={handleLogout}
                     className="hidden md:inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white text-[#1b0079] font-semibold hover:brightness-95 transition"
@@ -76,9 +82,9 @@ export default function Navbar() {
                 </Link>
               )}
 
-              {/* mobile menu button */}
+              {/* Mobile Toggle */}
               <button
-                onClick={() => setOpen((s) => !s)}
+                onClick={() => setOpen(!open)}
                 className="inline-flex md:hidden items-center p-2 rounded-md text-white hover:bg-white/5 transition"
                 aria-label="Toggle menu"
               >
@@ -109,10 +115,18 @@ export default function Navbar() {
 
               {user ? (
                 <>
-                  <div className="flex items-center gap-2 text-white/90 px-3 py-2 rounded-full bg-[#E80BFF]/10">
+                  {/* Profile icon in mobile */}
+                  <button
+                    onClick={() => {
+                      setOpen(false);
+                      navigate("/profile");
+                    }}
+                    className="mt-3 flex items-center gap-2 w-full px-4 py-2 rounded-md bg-[#E80BFF]/10 text-white hover:bg-[#E80BFF]/20 transition"
+                  >
                     <User size={16} />
-                    <span className="text-sm">{user.email}</span>
-                  </div>
+                    <span>Profile</span>
+                  </button>
+
                   <button
                     onClick={() => {
                       setOpen(false);
@@ -128,7 +142,7 @@ export default function Navbar() {
                 <Link
                   to="/login"
                   onClick={() => setOpen(false)}
-                  className="block mt-1 w-fit px-4 py-2 rounded-full bg-white text-[#1b0079] font-semibold"
+                  className="block mt-4 w-fit px-4 py-2 rounded-full bg-white text-[#1b0079] font-semibold"
                 >
                   <div className="flex items-center gap-2">
                     <User size={16} />
